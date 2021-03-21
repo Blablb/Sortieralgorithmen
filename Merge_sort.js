@@ -27,6 +27,6 @@ function merge (left, right) {
     return [ ...arr, ...left, ...right ]
 }
 
-sorted_deck = split_array(unsortDeck);
-
-console.log(sorted_deck);
+console.time();
+split_array(array);
+console.timeEnd();
