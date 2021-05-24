@@ -1,26 +1,25 @@
 step_count = 0;
 
 function quick_Sort(origArray) {
-  if (origArray.length <= 1) { 
-	step_count = step_count + 1
-	return origArray;
-  } else {
+	if (origArray.length <= 1) { 
+		step_count = step_count + 1
+		return origArray;
+  	} else {
+		var left = [];
+		var right = [];
+		var newArray = [];
+		var pivot = origArray.pop();
+		var length = origArray.length;
+		step_count = step_count + 1
 
-	var left = [];
-	var right = [];
-	var newArray = [];
-	var pivot = origArray.pop();
-	var length = origArray.length;
-	step_count = step_count + 1
-
-	for (var i = 0; i < length; i++) {
-	  if (origArray[i] <= pivot) {
-		left.push(origArray[i]);
-	  } else {
-		right.push(origArray[i]);
-	  }
-	  step_count = step_count + 1
-	}
+		for (var i = 0; i < length; i++) {
+	  		if (origArray[i] <= pivot) {
+				left.push(origArray[i]);
+	  		} else {
+				right.push(origArray[i]);
+	  		}
+	  		step_count = step_count + 1
+		}
 
 	return newArray.concat(quick_Sort(left), pivot, quick_Sort(right));
   }
