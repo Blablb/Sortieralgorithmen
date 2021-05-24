@@ -1,6 +1,6 @@
-unsortDeck = [32, 23, 1, 5, 6, 8, 12, 11, 26, 2, 4, 3];
+array = [32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
 
-console.log("twat");
+step_count = 0;
 
 function split_array (array) {
     const half = array.length / 2
@@ -10,6 +10,8 @@ function split_array (array) {
     }
 
     const left = array.splice(0, half)
+
+    step_count = step_count + 1;
 
     return merge(split_array(left), split_array(array))
 }
@@ -23,10 +25,10 @@ function merge (left, right) {
         } else {
             arr.push(right.shift())
         }
+        step_count = step_count + 1;
     }
-    return [ ...arr, ...left, ...right ]
+    return [ ...arr, ...left, ...right]
 }
 
-console.time();
-split_array(array);
-console.timeEnd();
+console.log(split_array(array));
+console.log(step_count);
