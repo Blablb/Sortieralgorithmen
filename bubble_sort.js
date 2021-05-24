@@ -1,32 +1,32 @@
 var cardSkript = document.createElement('script');
 cardSkript.src = 'cards.js';
+step_count = 0;
 
 // Bubble Sort Algorithmus
-function bubble_Sort(a)
-{
+function bubble_Sort(a) {
     var swap;
     var n = a.length-1;
     var x = a;
     do {
         swap = false;                   // tauschen nicht beendet
-        for (var i=0; i < n; i++)       // solange noch zahlen in Reihe vorhanden
-        {
-            if (x[i] < x[i+1])          // wenn erste zahl kleiner als zweite -> tauschen
-            {
-               var temp = x[i];
+        for (var i=0; i < n; i++) {     // solange noch zahlen in Reihe vorhanden
+            if (x[i] < x[i+1]) {       // wenn erste zahl kleiner als zweite -> tauschen
+                var temp = x[i];
 
-               x[i] = x[i+1];
-               x[i+1] = temp;
-               swap = true;
+                x[i] = x[i+1];
+                x[i+1] = temp;
+                swap = true;
             }
+            step_count = step_count + 1;
         }
-        n--;                            // Reihenlänge aktualisieren
+                n--;                            // Reihenlänge aktualisieren
     } while (swap);                     
- return x; 
-}
+        return x; 
+        }
 
 // Test:
-// console.log(bubble_Sort([12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213]));
+console.log(bubble_Sort([12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213]));
+console.log(step_count);
 
 let output = "";
 for (key in this.cards) {
