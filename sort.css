@@ -22,3 +22,22 @@
 	position:relative;
 	top:1px;
 }
+
+#selectedCards {
+	font-size: 6em;
+}
+
+#sortCards {
+	font-size: 6em;
+}
+
+.cards {
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	border: none;
+	cursor:pointer;
+	overflow: hidden;
+	outline:none;
+	font-size: 7em;
+	margin-right: 0.3em;
+}
