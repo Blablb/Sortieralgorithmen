@@ -50,40 +50,40 @@ function bubbleSort(a)
 
 // Merge Sort
 
-// function split_array (array) {
-//     const half = array.length / 2;
-//     stepCountMerge = stepCountMerge + 1;
-//     console.log(array);
+function split_array (array) {
+    const half = array.length / 2;
+    stepCountMerge = stepCountMerge + 1;
+    console.log(array);
 
-//     if(array.length < 2) {
-//         stepCountMerge = stepCountMerge + 1;
-//         return array
-//     }
+    if(array.length < 2) {
+        stepCountMerge = stepCountMerge + 1;
+        return array
+    }
 
-//     const left = array.splice(0, half);
-//     stepCountMerge = stepCountMerge + 1;
+    const left = array.splice(0, half);
+    stepCountMerge = stepCountMerge + 1;
 
-//     return merge(split_array(left), split_array(array))
-// }
+    return merge(split_array(left), split_array(array))
+}
 
-// function merge (left, right) {
-//     let arr = []
+function merge (left, right) {
+    let arr = []
 
-//     while (left.length && right.length) {
-//         if (left[0] < right[0]){
-//             arr.push(left.shift())
-//         } else {
-//             arr.push(right.shift())
-//         }
-//         stepCountMerge = stepCountMerge + 1;
-//     }
-//     return [ ...arr, ...left, ...right ]
-// }
+    while (left.length && right.length) {
+        if (left[0] < right[0]){
+            arr.push(left.shift())
+        } else {
+            arr.push(right.shift())
+        }
+        stepCountMerge = stepCountMerge + 1;
+    }
+    return [ ...arr, ...left, ...right ]
+}
 
 //Quick Sort
 function quick_Sort(origArray) {
 	if (origArray.length <= 1) { 
-        step_count = step_count + 1;
+        stepCountQuick = stepCountQuick + 1;
 		return origArray;
 	} else {
 
@@ -92,7 +92,7 @@ function quick_Sort(origArray) {
 		var newArray = [];
 		var pivot = origArray.pop();
 		var length = origArray.length;
-        step_count = step_count + 1;
+        stepCountQuick = stepCountQuick + 1;
 
 		for (var i = 0; i < length; i++) {
 			if (origArray[i] <= pivot) {
@@ -100,7 +100,7 @@ function quick_Sort(origArray) {
 			} else {
 				right.push(origArray[i]);
 			}
-            step_count = step_count + 1;
+            stepCountQuick = stepCountQuick + 1;
 		}
 
 		return newArray.concat(quick_Sort(left), pivot, quick_Sort(right));
@@ -126,18 +126,20 @@ function getUnicodes(cards) {
 
 function getSteps() {                   //Schrittzähler für Bubble-Sort
     document.getElementById('bubbleSteps').innerHTML = stepCountBubble;
-    console.log(stepCountMerge);
-    // document.getElementById('mergeSteps').innerHTML = stepCountMerge;
-    // document.getElementById('quickSteps').innerHTML = stepCountQuick;
+    // console.log(stepCountMerge);
+    document.getElementById('mergeSteps').innerHTML = stepCountMerge;
+    document.getElementById('quickSteps').innerHTML = stepCountQuick;
 }
 
 function run() {   
-    copieCard = cards.slice(0,cards.length);
-    // console.log(copieCard); 
+    copieCardBubble = cards.slice(0,cards.length);
+    copieCardQuick = cards.slice(0,cards.length);
+    copieCardMerge = cards.slice(0,cards.length);
+
     // sortieren und sortierte Karten ausgeben
-    sortValue = bubbleSort(copieCard);
-    // quick_Sort(copieCard);
-    // split_array(copieCard);
+    sortValue = bubbleSort(copieCardBubble);
+    quick_Sort(copieCardQuick);
+    split_array(copieCardMerge);
     stepCount = getSteps()
     sortCards = getUnicodes(sortValue);
     document.getElementById('sortCards').innerHTML = sortCards;
