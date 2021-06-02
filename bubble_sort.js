@@ -1,6 +1,7 @@
 var cardSkript = document.createElement('script');
 cardSkript.src = 'cards.js';
 
+disabled = false;
 stepCountBubble = 0;
 stepCountMerge = 0;
 stepCountQuick = 0;
@@ -49,7 +50,6 @@ function bubbleSort(a)
 }
 
 // Merge Sort
-
 function split_array (array) {
     const half = array.length / 2;
     stepCountMerge = stepCountMerge + 1;
@@ -107,14 +107,19 @@ function quick_Sort(origArray) {
 	}
 }
 
-function saveCards(a) {                 // ausgewählte Karten Speichern und ausgeben
-    cards.push(a);
-    unsortedUnicode = getUnicodes(cards);
-    document.getElementById('selectedCards').innerHTML = unsortedUnicode;
+// ausgewählte Karten Speichern und ausgeben
+function saveCards(a) {
+    if (disabled === false) {
+        cards.push(a);
+        unsortedUnicode = getUnicodes(cards);
+        document.getElementById('selectedCards').innerHTML = unsortedUnicode;
+    }
+    
 }
 
+// sucht Unicode im jeweiligen array
 function getUnicodes(cards) {   
-    unsortedUnicode = [];                       // sucht Unicode im jeweiligen array
+    unsortedUnicode = [];
    for (i=0; i < cards.length; i++) {
        var value = cards[i];
        value = value - 1;
@@ -124,23 +129,31 @@ function getUnicodes(cards) {
     return unsortedUnicode;
 }
 
-function getSteps() {                   //Schrittzähler für Bubble-Sort
-    document.getElementById('bubbleSteps').innerHTML = stepCountBubble;
-    // console.log(stepCountMerge);
-    document.getElementById('mergeSteps').innerHTML = stepCountMerge;
-    document.getElementById('quickSteps').innerHTML = stepCountQuick;
+//Schrittzähler
+function getSteps() {
+    document.getElementById('bubbleSteps').innerHTML = 'Bubble-Sort Schritte: ' + stepCountBubble;
+    document.getElementById('mergeSteps').innerHTML = 'Merge-Sort Schritte: ' + stepCountMerge;
+    document.getElementById('quickSteps').innerHTML = 'Quick-Sort Schritte: ' + stepCountQuick;
 }
 
-function run() {   
-    copieCardBubble = cards.slice(0,cards.length);
-    copieCardQuick = cards.slice(0,cards.length);
-    copieCardMerge = cards.slice(0,cards.length);
-
-    // sortieren und sortierte Karten ausgeben
-    sortValue = bubbleSort(copieCardBubble);
-    quick_Sort(copieCardQuick);
-    split_array(copieCardMerge);
-    stepCount = getSteps()
-    sortCards = getUnicodes(sortValue);
-    document.getElementById('sortCards').innerHTML = sortCards;
+// Algorithmen werden ausgeführt
+function run() {
+    if (cards.length > 0) {
+// Kartenarray kopieren
+        copieCardBubble = cards.slice(0,cards.length);
+        copieCardQuick = cards.slice(0,cards.length);
+        copieCardMerge = cards.slice(0,cards.length);
+// Sortieralorithmen ausführen
+        sortValue = bubbleSort(copieCardBubble);
+        quick_Sort(copieCardQuick);
+        split_array(copieCardMerge);
+// Schritte ausgeben
+        stepCount = getSteps()
+// Karten ausgeben
+        sortCards = getUnicodes(sortValue);
+        document.getElementById('sortCards').innerHTML = sortCards;
+// nach Ausführung buttun disablen
+        document.getElementById('sortButton').disabled = true;
+        disabled = true;
+    }  
 }

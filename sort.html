@@ -1,14 +1,14 @@
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Bubble Sort algorithm</title>
-  <link rel="stylesheet" href="sort.css">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <title>Bubble Sort algorithm</title>
+    <link rel="stylesheet" href="sort.css">
+  </head>
+  <body>
     <script src="bubble_sort.js"></script>
-    <script src="cards.js"></script>
-    <button href="#" class="myButton" onclick="run(cards)">Sortieren</button>
-    <div>
+    <h1>Sortieralgorithmen</h1>
+    <p>Wählen Sie eine beliebige Reihe von Karten aus.</p>
+    <div id="selectableCards" disabled>
       <button class="cards" onclick="saveCards(1)">&#127137;</button>
       <button class="cards" onclick="saveCards(2)">&#127138;</button>
       <button class="cards" onclick="saveCards(3)">&#127139;</button>
@@ -23,10 +23,13 @@
       <button class="cards" onclick="saveCards(12)">&#127149;</button>
       <button class="cards" onclick="saveCards(13)">&#127150;</button>
     </div>
+    <h2>Ausgewählte Karten:</h2>
     <div id="selectedCards"></div>
     <div id="sortCards"></div>
-    <div id="bubbleSteps"></div>
-    <div id="mergeSteps"></div>
-    <div id="quickSteps"></div>
-</body>
+    <div id="bubbleSteps">Bubble-Sort Schritte: </div>
+    <div id="mergeSteps">Merge-Sort Schritte: </div>
+    <div id="quickSteps">Quick-Sort Schritte: </div>
+    <button href="#" id="sortButton" onclick="run(cards)">Sortieren</button>
+    <a href="javascript:location.reload()" id="loadButton">Zurücksetzen</a>
+  </body>
 </html>
