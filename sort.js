@@ -1,6 +1,3 @@
-var cardSkript = document.createElement('script');
-cardSkript.src = 'cards.js';
-
 disabled = false;
 stepCountBubble = 0;
 stepCountMerge = 0;
